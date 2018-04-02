@@ -37,5 +37,50 @@ function startGame() {
 
 	console.log(chosenword);
 
+
+	blanksAndSuccesses = [];
+
+	wrongGuesses = [];
+
+	for (var i = 0; i < numBlanks; i++) {
+		blanksAndSuccesses.push("_");
+	}
+
+	console.log(blanksAndSuccesses);
+
+	document.getElementById("guesses-left").innerHTML = numGuesses;
+
+	document.getElementById("word-blanks").innerHTML = blanksAndSuccesses.join(" ");
+
+	document.getElementById("wrong-guesses").innerHTML = wrongGuesses.join(" ");
 }
 
+function checkLetters(letter) {
+	var letterInWord = false;
+
+	for (var i=0; i = numBlanks; i++) {
+		if (chosenword[i] === letter) {
+			letterInWord = true;
+		}
+	}
+
+
+	if (letterInWord) {
+		for (var j=0; j < numBlanks j++) {
+			if (chosenword[j] === letter) {
+				blanksAndSuccesses[j] = letter;
+ 			}
+		}
+		console.log(blanksAndSuccesses);
+	}
+
+	else {
+		wrongGuesses.push(letter);
+		numGuesses++;
+	}
+}
+
+
+function roundComplete() {
+	console.log("WInCount: " = wInCounter + " | LossCount:)
+}
