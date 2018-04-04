@@ -13,17 +13,9 @@ var wrongGuesses = [];
 var letterGuesses = '';
 
 
-var wInCounter = 0;
-
+var winCounter = 0;
 var lossCounter = 0;
-
 var numGuesses = 9;
-
-
-
-
-
-
 
 function startGame() {
 
@@ -66,7 +58,7 @@ function checkLetters(letter) {
 
 
 	if (letterInWord) {
-		for (var j=0; j < numBlanks j++) {
+		for (var j=0; j < numBlanks; j++) {
 			if (chosenword[j] === letter) {
 				blanksAndSuccesses[j] = letter;
  			}
@@ -76,11 +68,50 @@ function checkLetters(letter) {
 
 	else {
 		wrongGuesses.push(letter);
-		numGuesses++;
+		numGuesses--;
 	}
 }
 
 
 function roundComplete() {
-	console.log("WInCount: " = wInCounter + " | LossCount:)
+	console.log("WinCount: " = winCounter + " | LossCount:" + lossCounter + 
+		"| numGuesses: " = numGuesses);
+
+	document.getElementById("guesses-left").innerHTML = numGuesses;
+	document.getElementById("word-blanks").innerHTML = blanksAndSuccesses.join(" ");
+	document.getElementById("wrong-guesses").innerHTML = wrongGuesses.join(" ");
+
+	if (lettersInChosenWord.toString() === blanksAndSuccesses.toString()) {
+		winCounter++;
+		alert("You Win!");
+
+		document.getElementById("win-counter").innerHTML = winCounter;
+
+		startGame();
+	}
+
+	else if (numGuesses ==s= 0) {
+		lossCounter++;
+		alert("You lose!")
+
+		document.getElementById("loss-counter").innerHTML = lossCounter;
+
+		startGame();
+	}
 }
+
+
+
+
+
+startGame();
+
+
+
+
+document.onkeyup = function(event) {
+	var letterGuessed = String.fromCharCode(event.keycode).toLowerCase();
+	checkLetters(letterGuessed);
+	roundComplete();
+}
+
